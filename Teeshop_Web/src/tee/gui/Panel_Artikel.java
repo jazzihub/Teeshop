@@ -67,6 +67,11 @@ public class Panel_Artikel extends JPanel
 			}
 		});
 		popupMenu.add(mntmBearbeiten);
+		
+		JLabel lblGewichtInG = new JLabel("Gewicht in g");
+		lblGewichtInG.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblGewichtInG.setBounds(288, 46, 113, 14);
+		add(lblGewichtInG);
 		updateArtikelListe();
 
 	}
@@ -99,22 +104,22 @@ public class Panel_Artikel extends JPanel
 
 		JLabel lblBezeichnung = new JLabel("Bezeichnung");
 		lblBezeichnung.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblBezeichnung.setBounds(177, 46, 103, 14);
+		lblBezeichnung.setBounds(157, 46, 103, 14);
 		add(lblBezeichnung);
 
 		JLabel lblPreisNetto = new JLabel("Preis netto");
 		lblPreisNetto.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblPreisNetto.setBounds(347, 46, 94, 14);
+		lblPreisNetto.setBounds(433, 46, 94, 14);
 		add(lblPreisNetto);
 
 		JLabel lblMwst = new JLabel("MwSt");
 		lblMwst.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblMwst.setBounds(521, 46, 46, 14);
+		lblMwst.setBounds(583, 46, 46, 14);
 		add(lblMwst);
 
 		JLabel lblLagerbestand = new JLabel("Lagerbestand");
 		lblLagerbestand.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblLagerbestand.setBounds(681, 46, 119, 14);
+		lblLagerbestand.setBounds(720, 46, 119, 14);
 		add(lblLagerbestand);
 
 		listArtikel = new JList<Artikel>(artikelModel);

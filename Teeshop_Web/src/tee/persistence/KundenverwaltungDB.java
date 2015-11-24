@@ -7,6 +7,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
+
 import tee.fachlogik.Artikel;
 import tee.fachlogik.Kunde;
 import tee.fachlogik.Kundenverwaltung;
@@ -14,7 +15,7 @@ import tee.fachlogik.TeeException;
 
 public class KundenverwaltungDB extends Kundenverwaltung
 {
-	private EntityManager em;
+	private static EntityManager em;
 	
 	public KundenverwaltungDB() throws TeeException
 	{
@@ -27,9 +28,15 @@ public class KundenverwaltungDB extends Kundenverwaltung
 		try
 		{
 			em.getTransaction().begin();
-			if (!em.contains(kunde))
+			if (!kundeDoppelt(kunde))
 			{
 				em.persist(kunde);
+				JOptionPane
+				.showMessageDialog(null, "Kunde gespeichert");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Kunde existiert bereits");
 			}
 			em.getTransaction().commit();
 		} catch (Exception e)
@@ -38,6 +45,19 @@ public class KundenverwaltungDB extends Kundenverwaltung
 					"Kunde konnte nicht hinzugefügt werden");
 		}
 	}
+	
+	
+	public static boolean kundeDoppelt(Kunde kunde) //geht alle Kunden durch
+	{
+		TypedQuery<Kunde> query = em.createNamedQuery("Kunde.doppelt", Kunde.class);
+		query.setParameter("nachname", kunde.getNachname());
+		query.setParameter("vorname", kunde.getVorname());
+		query.setParameter("plz", kunde.getPlz());
+		query.setParameter("strasse", kunde.getStrasse());
+		
+		return query.getResultList().size() > 0; 
+	}
+
 
 	@Override
 	public void kundeEntfernen(Kunde kunde) throws TeeException
@@ -45,6 +65,7 @@ public class KundenverwaltungDB extends Kundenverwaltung
 		try
 		{
 			em.getTransaction().begin();
+			
 			em.remove(kunde);
 			em.getTransaction().commit();
 		} catch (Exception e)

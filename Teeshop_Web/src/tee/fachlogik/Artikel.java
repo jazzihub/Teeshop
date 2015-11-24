@@ -3,6 +3,7 @@ package tee.fachlogik;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Artikel implements Serializable
 	private int lagerstand;
 
 	// bi-directional many-to-one association to Bestellung
-	@OneToMany(mappedBy = "artikel")
+	@OneToMany(mappedBy = "artikel", cascade=CascadeType.REMOVE) //Attribut in Klasse Bestellung
 	private List<Bestellung> bestellungen;
 
 	

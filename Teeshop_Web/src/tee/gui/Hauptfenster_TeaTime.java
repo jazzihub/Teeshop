@@ -316,29 +316,39 @@ public class Hauptfenster_TeaTime extends JFrame
 		dialog.setVisible(true);
 	}
 	
-	//Bestelungen anzeigen
+	//Bestellungen anzeigen
 	protected void do_btnBestellungenAnzeigen_actionPerformed(ActionEvent e) throws TeeException {
 		
-		int kundenNr = Integer.parseInt(tfKundenNr.getText());		
-		Kunde k;
-		try
+		
+		if(!tfKundenNr.getText().isEmpty())
 		{
-			k = kv.kundeSuchen(kundenNr);
-			if(k != null)
+			int kundenNr = Integer.parseInt(tfKundenNr.getText());	
+			
+			Kunde k;
+			try
 			{
-			Dialog_BestellungenAnzeigen dialog = new Dialog_BestellungenAnzeigen(k);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-			}
-			else
+				k = kv.kundeSuchen(kundenNr);
+				if(k != null)
+				{
+				Dialog_BestellungenAnzeigen dialog = new Dialog_BestellungenAnzeigen(k);
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Keine Bestellungen gefunden");
+				}
+			} catch (TeeException e1)
 			{
-				JOptionPane.showMessageDialog(null, "Keine Bestellungen gefunden");
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1.getMessage());
 			}
-		} catch (TeeException e1)
-		{
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, e1.getMessage());
 		}
+		else
+		{
+			JOptionPane.showMessageDialog(null, "Kundennummer eingeben");
+		}
+		
 		
 		
 	
