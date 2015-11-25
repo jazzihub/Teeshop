@@ -22,6 +22,7 @@ public class ArtikelListRenderer implements ListCellRenderer<Artikel>
 		JPanel jp = new JPanel(new GridLayout(1, 5));
 		jp.add(new JLabel(String.valueOf(value.getId())));
 		jp.add(new JLabel(value.getBezeichnung()));
+		jp.add(new JLabel(String.valueOf(value.getGramm())));
 		jp.add(new JLabel(String.valueOf(value.getPreisNetto())));
 		jp.add(new JLabel(String.valueOf(value.getUst())));
 		jp.add(new JLabel(String.valueOf(value.getLagerstand())));

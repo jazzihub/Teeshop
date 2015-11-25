@@ -305,13 +305,18 @@ public class Hauptfenster_TeaTime extends JFrame
 	protected void do_btnKundenAnlegen_actionPerformed(ActionEvent e) {
 		
 		Dialog_KundeAnlegen dialog = new Dialog_KundeAnlegen(kv);
+		dialog.setLocationRelativeTo(this); //Dialogfenster wird in der Mitte des Hauptfensters geöffnet
+		dialog.setModal(true); //Hintergrundfenster werden geperrt
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setVisible(true);
+		dialog.setAlwaysOnTop(true);
 	}
 	
 	//Kunden anzeigen
 	protected void do_btnKundenAnzeigen_actionPerformed(ActionEvent e) {
 		Dialog_KundenAnzeigen dialog = new Dialog_KundenAnzeigen(kv);
+		dialog.setLocationRelativeTo(this);
+		//dialog.setModal(true);
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setVisible(true);
 	}
@@ -331,8 +336,12 @@ public class Hauptfenster_TeaTime extends JFrame
 				if(k != null)
 				{
 				Dialog_BestellungenAnzeigen dialog = new Dialog_BestellungenAnzeigen(k);
+				dialog.setModal(true);
+				dialog.setAlwaysOnTop(true);
+				dialog.setLocationRelativeTo(this);
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
+				
 				}
 				else
 				{
@@ -348,9 +357,6 @@ public class Hauptfenster_TeaTime extends JFrame
 		{
 			JOptionPane.showMessageDialog(null, "Kundennummer eingeben");
 		}
-		
-		
-		
 	
 	}
 }

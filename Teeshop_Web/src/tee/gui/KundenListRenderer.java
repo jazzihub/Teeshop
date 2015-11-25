@@ -24,6 +24,7 @@ public class KundenListRenderer implements ListCellRenderer<Kunde>
 		jp.add(new JLabel(value.getVorname()));
 		jp.add(new JLabel(String.valueOf(value.getPlz())));
 		jp.add(new JLabel(value.getOrt()));
+		
 		if (!isSelected)
 			jp.setBackground(list.getBackground());
 		else

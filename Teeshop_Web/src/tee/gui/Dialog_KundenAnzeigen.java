@@ -35,6 +35,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
 import jdk.nashorn.internal.runtime.ListAdapter;
+
 import javax.swing.ListSelectionModel;
 
 public class Dialog_KundenAnzeigen extends JDialog
@@ -65,7 +66,6 @@ public class Dialog_KundenAnzeigen extends JDialog
 		for (Kunde k : kv.getKunden())
 		{
 			kundenModel.addElement(k);
-			
 		}
 	}
 	
@@ -123,6 +123,15 @@ public class Dialog_KundenAnzeigen extends JDialog
 		lblOrt.setBounds(548, 55, 75, 14);
 		panel.add(lblOrt);
 		
+		JButton btnBestellungAnzeigen = new JButton("Bestellung anzeigen");
+		btnBestellungAnzeigen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_btnBestellungAnzeigen_actionPerformed(e);
+			}
+		});
+		btnBestellungAnzeigen.setBounds(172, 11, 183, 23);
+		panel.add(btnBestellungAnzeigen);
+		
 		listKunden = new JList<Kunde>(kundenModel);
 		listKunden.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		splitPane.setRightComponent(listKunden);
@@ -139,5 +148,11 @@ public class Dialog_KundenAnzeigen extends JDialog
 		updateKundenListe();
 		//JOptionPane.showMessageDialog(this, "Kunde gelöscht");
 	}
-	
+	protected void do_btnBestellungAnzeigen_actionPerformed(ActionEvent e) {
+		Kunde k = listKunden.getSelectedValue();
+		
+		Dialog_BestellungenAnzeigen dialog = new Dialog_BestellungenAnzeigen(k);
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.setVisible(true);
+	}
 }

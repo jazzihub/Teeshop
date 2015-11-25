@@ -95,13 +95,18 @@ public class Dialog_BestellungenAnzeigen extends JDialog
 
 		JLabel lblArtikelbezeichnung = new JLabel("Artikelbezeichnung");
 		lblArtikelbezeichnung.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblArtikelbezeichnung.setBounds(191, 55, 198, 14);
+		lblArtikelbezeichnung.setBounds(170, 55, 198, 14);
 		panel.add(lblArtikelbezeichnung);
 
 		JLabel lblAnzahl = new JLabel("Anzahl");
 		lblAnzahl.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAnzahl.setBounds(428, 55, 46, 14);
+		lblAnzahl.setBounds(518, 55, 75, 14);
 		panel.add(lblAnzahl);
+		
+		JLabel lblGramm = new JLabel("Gramm");
+		lblGramm.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblGramm.setBounds(350, 55, 83, 14);
+		panel.add(lblGramm);
 
 		listBestellung = new JList<Bestellung>(bestellModel);
 		splitPane.setRightComponent(listBestellung);

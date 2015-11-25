@@ -26,6 +26,7 @@ public class Artikel implements Serializable
 	// Schlüssel automatisch generieren
 	private int id;
 	private String bezeichnung;
+	private double gramm;
 	@Column(name = "nettopreis")
 	private double preisNetto; // BigDecimal als Datentyp?
 	@Column(name = "mwst")
@@ -43,11 +44,12 @@ public class Artikel implements Serializable
 	{
 	}
 
-	public Artikel(String bezeichnung, double preis, double ust, int lagerstand)
+	public Artikel(String bezeichnung, double gramm, double preis, double ust, int lagerstand) throws TeeException
 	{
 		// setId(nextId);
 		// nextId++;
 		setBezeichnung(bezeichnung);
+		setGramm(gramm);
 		setPreisNetto(preis);
 		setUst(ust);
 		setLagerstand(lagerstand);
@@ -82,9 +84,24 @@ public class Artikel implements Serializable
 		this.bestellungen = bestellungen;
 	}
 
-	public void setLagerstand(int lagerstand)
+	public void setLagerstand(int lagerstand) throws TeeException
 	{
+		
 		this.lagerstand = lagerstand;
+	}
+	
+	public double getGramm()
+	{
+		return gramm;
+	}
+
+	public void setGramm(double gramm) throws TeeException
+	{
+		if(gramm < 1)
+		{
+			throw new TeeException("Gramm muss größer null sein");
+		}
+		this.gramm = gramm;
 	}
 
 	public int getId()

@@ -37,10 +37,7 @@ public class Dialog_ArtikelAnlegen extends JDialog
 	private Panel_Artikel artikelPanel;
 	private JComboBox cBMwst;
 	private TextOhneZahl toz;
-	private String bezeichnung;
-	double preis;
-	int lagerstand;
-	double mwst;
+	private JTextField tfGramm;
 
 	public Dialog_ArtikelAnlegen(Artikelverwaltung av, Panel_Artikel ap)
 	{
@@ -53,6 +50,7 @@ public class Dialog_ArtikelAnlegen extends JDialog
 
 	public void initDialogArtikelAnlegen()
 	{
+		
 		setBounds(100, 100, 598, 354);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -120,6 +118,20 @@ public class Dialog_ArtikelAnlegen extends JDialog
 			contentPanel.add(tfLagerstand);
 			tfLagerstand.setColumns(10);
 		}
+		
+		JLabel lblGewicht = new JLabel("Gewicht:");
+		lblGewicht.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblGewicht.setBounds(337, 220, 67, 14);
+		contentPanel.add(lblGewicht);
+		
+		tfGramm = new JTextField();
+		tfGramm.setBounds(414, 217, 86, 20);
+		contentPanel.add(tfGramm);
+		tfGramm.setColumns(10);
+		
+		JLabel lblGramm = new JLabel("gramm");
+		lblGramm.setBounds(505, 220, 46, 14);
+		contentPanel.add(lblGramm);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -155,6 +167,12 @@ public class Dialog_ArtikelAnlegen extends JDialog
 	protected void do_btnSpeichern_actionPerformed(ActionEvent e)
 	{
 
+		String bezeichnung;
+		double preis;
+		int lagerstand;
+		double mwst;	
+		
+		
 		Artikel artikel = null;
 		toz = new TextOhneZahl();
 		bezeichnung = tfBezeichnung.getText();
@@ -174,6 +192,7 @@ public class Dialog_ArtikelAnlegen extends JDialog
 		{
 			try
 			{
+				double gramm = Double.parseDouble(tfGramm.getText());
 				preis = Double.parseDouble(tfNettoPreis.getText());
 
 				String steuer = (String) cBMwst.getSelectedItem();
@@ -184,7 +203,7 @@ public class Dialog_ArtikelAnlegen extends JDialog
 					lagerstand = Integer.parseInt(tfLagerstand.getText());
 					try
 					{
-						artikel = new Artikel(bezeichnung, preis, mwst,
+						artikel = new Artikel(bezeichnung, gramm, preis, mwst,
 								lagerstand);
 						artikelverwaltung.artikelHinzufugen(artikel);
 						artikelPanel.updateArtikelListe();

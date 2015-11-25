@@ -74,7 +74,14 @@ public class Dialog_ArtikelBearbeiten extends JDialog
 				try
 				{
 
-					artikel.setLagerstand(Integer.parseInt(tfLagerstand.getText()));;
+					try
+					{
+						artikel.setLagerstand(Integer.parseInt(tfLagerstand.getText()));
+					} catch (TeeException e1)
+					{
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					};
 					try
 					{
 						artikelpanel.updateArtikelListe();

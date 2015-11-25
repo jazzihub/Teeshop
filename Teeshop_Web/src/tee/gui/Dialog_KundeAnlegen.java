@@ -209,8 +209,6 @@ public class Dialog_KundeAnlegen extends JDialog
 						kunde = new Kunde(vorname, nachname, strasse, hnr, plz,
 								ort);
 						kv.kundeHinzufugen(kunde);
-						JOptionPane
-								.showMessageDialog(this, "Kunde gespeichert");
 						dispose();
 						
 

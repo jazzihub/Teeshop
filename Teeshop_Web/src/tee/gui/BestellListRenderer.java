@@ -25,6 +25,7 @@ public class BestellListRenderer implements ListCellRenderer<Bestellung>
 		JPanel jp = new JPanel(new GridLayout(1, 5));
 		jp.add(new JLabel (sdf.format(value.getDatum())));
 		jp.add(new JLabel(value.getArtikel().getBezeichnung()));
+		jp.add(new JLabel (String.valueOf(value.getArtikel().getGramm())));
 		jp.add(new JLabel(String.valueOf(value.getAnzahl())));
 		
 		if (!isSelected)
