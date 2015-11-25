@@ -35,7 +35,10 @@ import javax.persistence.Table;
 
 
 @Entity
-@NamedQuery(name="Kunde.findAll", query="SELECT k FROM Kunde k")
+@NamedQueries({
+@NamedQuery(name="Kunde.findAll", query="SELECT k FROM Kunde k"),
+@NamedQuery(name = "Kunde.doppelt", query="SELECT k FROM Kunde k WHERE k.nachname = :nachname AND k.vorname = :vorname AND k.plz = :plz AND k.strasse = :strasse")
+})
 public class Kunde implements Serializable 
 {
 	//Attribute

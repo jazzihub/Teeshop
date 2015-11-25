@@ -20,7 +20,7 @@ public class Test
 		Kundenverwaltung kv = new KundenverwaltungDB();		
 		
 		Kunde k1 = new Kunde("Yvonne","Huber","Laas", "32", 9640, "Kötschach");
-		Artikel a1 = new Artikel("TestTeeTeeblabla", 100.0, 10.0, 200);
+		Artikel a1 = new Artikel("TestTeeTeeblabla", 20, 100.0, 10.0, 200);
 		
 		kv.kundeHinzufugen(k1);
 		av.artikelHinzufugen(a1);
